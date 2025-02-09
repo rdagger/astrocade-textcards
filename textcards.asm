@@ -17,7 +17,7 @@ VIOLET  EQU $13
 WHITE   EQU $07
 YELLOW  EQU $87
 
-VERTLN	EQU 90		                ; Number of rows used for screen data
+VERTLN	EQU 90                          ; Number of rows used for screen data
 
 STACK   EQU $4F53                       ; Stack area
         ORG    FIRSTC                   ; First byte of Cartridge
