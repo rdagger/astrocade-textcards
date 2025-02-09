@@ -5,21 +5,21 @@
 ; zmac -i -o textcards.bin textcards.asm
 INCLUDE "HVGLIB.H"                      ; Home Video Game Library Header
 
-AQUA    EQU $BE                         ; Define colors
-BLACK   EQU $00
-BLUE    EQU $FC
-CYAN    EQU $EE
-GREEN   EQU $AC
-ORANGE  EQU $63
-FUCHSIA EQU $42
-RED     EQU $5A
-VIOLET  EQU $13
-WHITE   EQU $07
-YELLOW  EQU $87
+AQUA    EQU     $BE                     ; Define colors
+BLACK   EQU     $00
+BLUE    EQU     $FC
+CYAN    EQU     $EE
+GREEN   EQU     $AC
+ORANGE  EQU     $63
+FUCHSIA EQU     $42
+RED     EQU     $5A
+VIOLET  EQU     $13
+WHITE   EQU     $07
+YELLOW  EQU     $87
 
-VERTLN	EQU 90                          ; Number of rows used for screen data
+VERTLN	EQU     90                      ; Number of rows used for screen data
 
-STACK   EQU $4F53                       ; Stack area
+STACK   EQU    $4F53                    ; Stack area
         ORG    FIRSTC                   ; First byte of Cartridge
         JP     PRGST                    ; No menu, just start program (required)
 
@@ -39,11 +39,10 @@ PRGST:                                  ; Program Start
         DO     (FILL)                   ; Screen Fill
         DW     $4000                    ; Destination
         DW     (VERTLN*40)              ; Bytes to move
-        DB     00000000B                ; Fill with
+        DB     $00                      ; Fill with black
 
         EXIT                            ; Exit System Interpreter
         SYSTEM ACTINT                   ; Enable automatic interrupt service
-        EI                              ; Enable interrupts
 
 INITCODEHERE:
         LD      B, 9                    ; Counter for current card (10 cards, zero based)
@@ -58,7 +57,7 @@ DRAWTEXTCARD:
         SYSSUK  FILL                    ; Blank screen FILL
         DW      $4000                   ; Destination (first byte of video RAM)
         DW      VERTLN*40               ; Total bytes to clear (Screen height in lines x width in bytes)
-        DB      00000000B               ; Fill with zero for black
+        DB      $00                     ; Fill with zero for black
         POP     BC                      ; Restore text card counter
         
         LD      HL, COLORS              ; Load address of color order
@@ -111,43 +110,42 @@ COLTAB:
         DB      BLACK                   ; Color 0 Right (Not used)
 
 ; Card Text (using control codes for placement and spacing)
-TEXT1:     DB      $0C, "CAN YOU", $03, "ESCAPE?", $00
-TEXT2:     DB      $0C, "A VAST", $05, "MAZE", $00
-TEXT3:     DB      $0D, "SOLVE", $04, "PUZZLES", $00
-TEXT4:     DB      $0C, "UNEARTH", $03, "SECRETS" ,$00
-TEXT5:     DB      $0C, "UNLOCK", $04, "VAULTS", $00
-TEXT6:     DB      $0C, "PLUNDER", $02, "TREASURES", $00
-TEXT7:     DB      $0D, "EVADE", $03, "CREATURES", $00
-TEXT8:     DB      $0C, "DEVOUR", $04, "SNACKS", $00
-TEXT9:     DB      $0C, "AVOID", $05, "TRAPS", $00
-TEXT10:    DB      $0C, "LOOTERA", $00
+TEXT1:  DB      $0C, "CAN YOU", $03, "ESCAPE?", $00
+TEXT2:  DB      $0C, "A VAST", $05, "MAZE", $00
+TEXT3:  DB      $0D, "SOLVE", $04, "PUZZLES", $00
+TEXT4:  DB      $0C, "UNEARTH", $03, "SECRETS" ,$00
+TEXT5:  DB      $0C, "UNLOCK", $04, "VAULTS", $00
+TEXT6:  DB      $0C, "PLUNDER", $02, "TREASURES", $00
+TEXT7:  DB      $0D, "EVADE", $03, "CREATURES", $00
+TEXT8:  DB      $0C, "DEVOUR", $04, "SNACKS", $00
+TEXT9:  DB      $0C, "AVOID", $05, "TRAPS", $00
+TEXT10: DB      $0C, "LOOTERA", $00
 
 ; Text order
 TEXTS:
-    DW  TEXT10
-    DW  TEXT9
-    DW  TEXT8
-    DW  TEXT7
-    DW  TEXT6
-    DW  TEXT5
-    DW  TEXT4
-    DW  TEXT3
-    DW  TEXT2
-    DW  TEXT1
+        DW      TEXT10
+        DW      TEXT9
+        DW      TEXT8
+        DW      TEXT7
+        DW      TEXT6
+        DW      TEXT5
+        DW      TEXT4
+        DW      TEXT3
+        DW      TEXT2
+        DW      TEXT1
 
 ; Color order
 COLORS:
-    DB  RED
-    DB  ORANGE
-    DB  AQUA
-    DB  FUCHSIA
-    DB  GREEN
-    DB  YELLOW
-    DB  VIOLET
-    DB  BLUE
-    DB  CYAN
-    DB  WHITE
+        DB      RED
+        DB      ORANGE
+        DB      AQUA
+        DB      FUCHSIA
+        DB      GREEN
+        DB      YELLOW
+        DB      VIOLET
+        DB      BLUE
+        DB      CYAN
+        DB      WHITE
 
 COPYRIGHT: 
-    DB      "RDAGGER", $64, $0D, " 2025", $00
-
+        DB      "RDAGGER", $64, $0D, " 2025", $00
