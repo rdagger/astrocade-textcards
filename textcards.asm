@@ -148,4 +148,4 @@ COLORS:
         DB      WHITE
 
 COPYRIGHT: 
-        DB      "RDAGGER", $64, $0D, " 2025", $00
+        DB      "RDAGGER 2025", $00
