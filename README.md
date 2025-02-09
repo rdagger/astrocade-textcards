@@ -1,4 +1,4 @@
-# Lootera Text Card Generator
+# Text Card Generator
 
 A Z80 assembly program for the **Bally Astrocade** that I used to generate the text cards for the **"Coming Soon"** video to my homebrew game **Lootera**.
 
