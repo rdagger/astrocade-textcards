@@ -8,6 +8,8 @@ A Z80 assembly program for the **Bally Astrocade** that I used to generate the t
 - Final screen displays the game title **Lootera** with color-cycling text.
 - Designed specifically for creating **text cards** for game trailers.
 
+![0018](https://github.com/user-attachments/assets/95a0327d-7853-42ae-b10d-f344e507bbdf)
+
 ## How It Works
 1. The program starts with a black screen, skipping the default menu.
 2. Each time the **trigger** on Controller 1 is pressed, the next text card is displayed.
